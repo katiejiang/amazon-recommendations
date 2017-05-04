@@ -2,25 +2,80 @@
   <title>Amazon Recommendation System</title>
 </head>
 
-<body></body>
+<body class="pushable"></body>
 
 <template name="main">
-  <div class="ui main container">
-    <h1>Amazon Recommendation System</h1>
-    {{> Template.dynamic template=view}}
+  <div class="pusher">
+    {{> header}}
+    <div class="ui vertical stripe segment">
+      <div class="ui middle aligned stackable grid container">
+        <div class="row">
+          <div class="sixteen wide column">
+            {{> productList}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<template name="search">
-<div class="ui icon input">
-  <input type="text" placeholder="Search..." />
-  <i class="search icon"></i>
-</div>
-{{> productList}}
+<template name="header">
+  <div class="ui inverted vertical masthead center aligned segment">
+    <h1 class="ui header">Amazon Recommendation System</h1>
+    <div class="ui icon input">
+      <input type="text" placeholder="Search..." />
+      <i class="search icon"></i>
+    </div>
+  </div>
+  <br />
 </template>
 
 <template name="productList">
+  <div class="ui divided items">
+    <div class="item">
+      <div class="image">
+        <img src="/img/dress.png" />
+      </div>
+      <div class="content">
+        <a class="header">Product Name</a>
+        <div class="meta">
+          <span class="cinema">Rating</span>
+        </div>
+        <div class="description">
+          <p>
+            Longer Description
+          </p>
+        </div>
+        <div class="extra">
+          <div class="ui right floated primary button">
+            Get Recommendations
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="item">
+      <div class="image">
+        <img src="/img/shirt.png" />
+      </div>
+      <div class="content">
+        <a class="header">Product Name</a>
+        <div class="meta">
+          <span class="cinema">Rating</span>
+        </div>
+        <div class="description">
+          <p>
+            Longer Description
+          </p>
+        </div>
+        <div class="extra">
+          <div class="ui right floated primary button">
+            Get Recommendations
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="recommendations"></template>
