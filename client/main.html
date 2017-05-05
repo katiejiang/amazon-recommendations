@@ -11,9 +11,7 @@
       <div class="ui middle aligned stackable grid container">
         <div class="row">
           <div class="sixteen wide column">
-            {{> product}}
-            <h3 class="ui header">Recommendations</h3>
-            {{> productList}}
+            {{> Template.dynamic template=view}}
           </div>
         </div>
       </div>
@@ -24,28 +22,40 @@
 <template name="header">
   <div class="ui inverted vertical masthead center aligned segment" id="header">
     <h1 class="ui header">Amazon Recommendation System</h1>
-    <div class="ui icon input" id="main-search">
-      <input type="text" placeholder="Search..." />
-      <i class="search icon"></i>
-    </div>
+    <form id="search-product-form" class="ui form">
+        <div class="ui icon input" id="main-search">
+          <input type="text" name="searchQuery" placeholder="Search..." />
+          <i class="search icon"></i>
+        </div>
+    </form>
   </div>
   <br />
 </template>
 
+<template name="search">
+  <h2 class="ui header">Search Results</h2>
+  {{#if products}}
+    {{> productList}}
+  {{else}}
+    <h4>No search results.</h4>
+  {{/if}}
+</template>
+
 <template name="product">
+  <h2>Product</h2>
   <div class="ui divided items">
     <div class="item">
       <div class="image">
-        <img src="/img/dress.png" />
+        <img src={{product.imURL}} />
       </div>
       <div class="content">
-        <a class="header">Product Name</a>
+        <a class="header">{{product.title}}</a>
         <div class="meta">
-          <span class="cinema">Rating</span>
+          <span class="cinema">{{product.id}}</span>
         </div>
         <div class="description">
           <p>
-            Description
+            {{product.description}}
           </p>
         </div>
         <div class="extra">
@@ -53,62 +63,34 @@
       </div>
     </div>
   </div>
+  <h3 class="ui header">Recommendations</h3>
+  {{> productList}}
 </template>
 
 <template name="productList">
   <div class="ui divided items">
+  {{#each products}}
     <div class="item">
       <div class="image">
-        <img src="/img/dress.png" />
+        <img src={{imURL}} />
       </div>
       <div class="content">
-        <a class="header">Product Name</a>
+        <a class="header">{{title}}</a>
         <div class="meta">
-          <span class="cinema">Rating</span>
+          <span class="cinema">{{id}}</span>
         </div>
         <div class="description">
           <p>
-            Description
+            {{description}}
           </p>
         </div>
         <div class="extra">
-          <div class="ui button" >
-            See Reviews
-          </div>
-          <div class="ui primary button">
+          <div class="ui primary button recommendations-btn" id="{{id}}">
             Get Recommendations
           </div>
         </div>
       </div>
     </div>
-
-    <div class="item">
-      <div class="image">
-        <img src="/img/shirt.png" />
-      </div>
-      <div class="content">
-        <a class="header">Product Name</a>
-        <div class="meta">
-          <span class="cinema">Rating</span>
-        </div>
-        <div class="description">
-          <p>
-            Description
-          </p>
-        </div>
-        <div class="extra">
-          <div class="ui button" >
-            See Reviews
-          </div>
-          <div class="ui primary button">
-            Get Recommendations
-          </div>
-        </div>
-      </div>
-    </div>
+  {{/each}}
   </div>
-</template>
-
-<template name="recommendations">
-
 </template>
