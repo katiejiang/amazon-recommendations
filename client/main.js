@@ -13,11 +13,13 @@ Template.header.events({
     'submit #search-product-form': function (event) {
         event.preventDefault();
         var query = event.target.searchQuery.value;
+        console.log(query);
         if (query) {
             query = new RegExp(query, 'i');
-            var products = Products.find({'id': {$regex: query}}).fetch();
+            // show the first 50 results
+            var products = Products.find({'title': {$regex: query}}).fetch().slice(0,50);
+            console.log(products);
             Session.set('products', products);
-            console.log(Session.get('products'));
         } else {
             Session.set('products', []);
         }
