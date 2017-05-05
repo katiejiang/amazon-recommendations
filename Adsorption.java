@@ -8,14 +8,13 @@ import java.util.Set;
 public class Adsorption {
 	HashMap<String, HashMap<String, Double>> vertices;
 	HashMap<String, HashMap<String, Double>> labels;
-	
+
 	public Adsorption() {
 		vertices = new HashMap<String, HashMap<String, Double>>();
 		labels = new HashMap<String, HashMap<String, Double>>();
 	}
-	
+
 	void addReview(String uid, String pid, double weight) {
-		weight = weight - 3.0;
 		HashMap<String, Double> un;
 		HashMap<String, Double> pn;
 		if(vertices.containsKey(uid)) {
@@ -37,10 +36,10 @@ public class Adsorption {
 		pn.put(uid, weight);
 		un.put(pid, weight);
 	}
-	
+
 	void runAdsorption(int iterations) {
 		for(int i = 0; i < iterations; i++) {
-			HashMap<String, HashMap<String, Double>> newLabels = 
+			HashMap<String, HashMap<String, Double>> newLabels =
 					new HashMap<String, HashMap<String, Double>>();
 			for(Entry<String, HashMap<String, Double>> node : vertices.entrySet()) {
 				String nodeName = node.getKey();
@@ -72,7 +71,7 @@ public class Adsorption {
 			labels = newLabels;
 		}
 	}
-	
+
 	void printLabels(int limit) {
 		int i = 0;
 		for(Entry<String, HashMap<String, Double>> entry : labels.entrySet()) {
@@ -83,9 +82,9 @@ public class Adsorption {
 			}
 		}
 	}
-	
+
 	Iterator<Entry<String, HashMap<String, Double>>> iter() {
-		Set<Entry<String, HashMap<String, Double>>> c = new 
+		Set<Entry<String, HashMap<String, Double>>> c = new
 				HashSet<Entry<String, HashMap<String, Double>>>();
 		for(Entry<String, HashMap<String, Double>> e : labels.entrySet()) {
 			if(!e.getValue().isEmpty()) {
@@ -94,5 +93,5 @@ public class Adsorption {
 		}
 		return c.iterator();
 	}
-	
+
 }
