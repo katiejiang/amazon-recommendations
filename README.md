@@ -9,7 +9,7 @@
 
 ## Setting Up
 #### Install Meteor
-If you don't have Meteor, you can install it (here)[https://www.meteor.com/install].
+If you don't have Meteor, you can install it [here](https://www.meteor.com/install).
 #### Clone the Repo
 ```
 $ git clone https://github.com/katiejiang/amazon-recommendations.git
